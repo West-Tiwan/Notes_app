@@ -3,7 +3,6 @@ package com.example.notesapp.compUI
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,9 +20,9 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.notesapp.data.Note
 import com.example.notesapp.viewmodel.NoteViewModel
 
 @Composable
@@ -32,17 +31,22 @@ fun NoteScreen(viewModel: NoteViewModel, innerpadding: PaddingValues) {
     var title by remember { mutableStateOf("") }
     var desc by remember { mutableStateOf("") }
 
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(
+        modifier = Modifier.padding(16.dp).fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         OutlinedTextField(
             value = title,
             onValueChange = { title = it },
-            label = { Text("Title") }
+            label = { Text("Title") },
+            modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(8.dp))
         OutlinedTextField(
             value = desc,
             onValueChange = { desc = it },
-            label = { Text("Description") }
+            label = { Text("Description") },
+            modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = {
